@@ -18,7 +18,7 @@ except:
 
 app = Flask(__name__)
 
-rtax58u = AsusRouter(routerIp, routerUser, routerPass)
+ar = AsusRouter(routerIp, routerUser, routerPass)
 
 
 def res(data):
@@ -35,40 +35,40 @@ def index():
 
 @app.route('/settings')
 def settings():
-    return res(rtax58u.get_settings())
+    return res(ar.get_settings())
 
 
 @app.route('/online-clients')
 def onlineClients():
-    return res(rtax58u.get_online_clients())
+    return res(ar.get_online_clients())
 
 
 @app.route('/dhcp-list')
 def dhcpList():
-    return res(rtax58u.get_dhcp_list())
+    return res(ar.get_dhcp_list())
 
 
 @app.route('/cpu-usage')
 def cpuUsage():
-    return res(rtax58u.get_cpu_usage())
+    return res(ar.get_cpu_usage())
 
 
 @app.route('/memory-usage')
 def memoryUsage():
-    return res(rtax58u.get_memory_usage())
+    return res(ar.get_memory_usage())
 
 
 @app.route('/client-info/<mac>')
 def clientInfo(mac):
     id = mac.replace("-", ":")
     print(id)
-    return res(rtax58u.get_client_info(id))
+    return res(ar.get_client_info(id))
 
 
 @app.route('/clients-info')
 def clientsInfo():
     try:
-        return res(rtax58u.get_clients_info())
+        return res(ar.get_clients_info())
     except Exception as e:
         print("ERR", str(e))
 
