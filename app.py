@@ -27,7 +27,6 @@ def res(data):
     except Exception as e:
         return make_response("Error")
 
-
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -40,7 +39,7 @@ def settings():
 
 @app.route('/online-clients')
 def onlineClients():
-    return res(ar.get_online_clients())
+    return ar.get_online_clients()
 
 
 @app.route('/dhcp-list')
