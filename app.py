@@ -67,10 +67,7 @@ def clientInfo(mac):
 
 @app.route('/clients-info')
 def clientsInfo():
-    try:
-        return res(ar.get_clients_info())
-    except Exception as e:
-        print("ERR", str(e))
+    return res(ar.get_clients_info())
 
 
 if __name__ == '__main__':
