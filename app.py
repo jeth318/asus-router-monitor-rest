@@ -10,6 +10,12 @@ routerIp = os.environ['ROUTER_IP']
 routerUser = os.environ['ROUTER_USER']
 routerPass = os.environ['ROUTER_PASS']
 
+try:
+    port = os.environ["PORT"]
+except:
+    print("No custom port specified in the .env file. Using fallback port 3555.")
+    port = 3555
+
 app = Flask(__name__)
 
 rtax58u = AsusRouter(routerIp, routerUser, routerPass)
@@ -68,4 +74,4 @@ def clientsInfo():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=9988)
+    app.run(host='0.0.0.0', port=port)
