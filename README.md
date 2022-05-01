@@ -27,16 +27,17 @@ Setup and install:
 Usage:
 If you want to fork the app in the background instead, I suggest using PM2:
 `pm2 start app.py --interpreter python3 --name asus-router-monitor-rest --watch`
-If you just want to spin it up as is, the run `python app.py` in your terminal.
+If you just want to spin it up as is, then run `python app.py` in your terminal while in the app root directory.
 
-    The server will be live at http://localhost:3555.
-    Now you can access the API through the following endpoints:
-    * /settings
-    * /clients-info
-    * /client-info/[id] (mac-address in the format XX-XX-XX-XX-XX)
-    * /online-clients
-    * /dhcp-list
-    * /cpu-usage
-    * /memory-usage
+The server will now be live at http://localhost:3555.
+Access the API through the following endpoints:
 
-    For more detailed documentation on the return values, please visit https://github.com/lmeulen/AsusRouterMonitor. While you're there, give the guy a star.
+- /settings
+- /clients-info
+- /client-info/[id] (mac-address in the format XX-XX-XX-XX-XX)
+- /online-clients
+- /dhcp-list
+- /cpu-usage
+- /memory-usage
+
+For detailed documentation of the return values for each endpoint, please visit https://github.com/lmeulen/AsusRouterMonitor and checkout the corresponding values. While you're there, give the guy a star!
