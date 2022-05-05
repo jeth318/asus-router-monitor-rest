@@ -5,7 +5,7 @@ import time
 
 
 class AsusRouter:
-    
+
     def __init__(self, ipaddress, username, password):
         """
         Create the object and connect with the router
@@ -259,13 +259,19 @@ class AsusRouter:
         """
         clnts = self.get_clients_fullinfo()
         lst = []
-        
+        clients_list = []
+
         if len(clnts) == 0:
             print("No clients online. Probably some error somewhere?")
             return json.dumps(lst)
-        
-        for c in clnts['get_clientlist']:
-            if (len(c) == 17) and ("isOnline" in clnts['get_clientlist'][c]) and (clnts['get_clientlist'][c]['isOnline'] == '1'):
+
+        try:
+            clients_list = clnts['get_clientlist']
+        except:
+            return json.dumps([])
+
+        for c in clients_list:
+            if (len(c) == 17) and ("isOnline" in clients_list[c]) and (clients_list[c]['isOnline'] == '1'):
                 lst.append({"mac": c})
         return json.dumps(lst)
 
