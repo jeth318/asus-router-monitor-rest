@@ -259,6 +259,10 @@ class AsusRouter:
         """
         clnts = self.get_clients_fullinfo()
         lst = []
+        if len(clnts) == 0:
+            print("No clients online. Probably some error somewhere?")
+            return json.dumps(lst)
+
         for c in clnts['get_clientlist']:
             if (len(c) == 17) and ("isOnline" in clnts['get_clientlist'][c]) and (clnts['get_clientlist'][c]['isOnline'] == '1'):
                 lst.append({"mac": c})

@@ -1,6 +1,8 @@
 import os
 from asus_router import AsusRouter
 from flask import Flask, make_response, render_template, jsonify
+from flask_cors import CORS
+import json
 from dotenv import dotenv_values, load_dotenv
 
 load_dotenv()
@@ -17,6 +19,7 @@ except:
     port = 3555
 
 app = Flask(__name__)
+CORS(app)
 
 ar = AsusRouter(routerIp, routerUser, routerPass)
 
