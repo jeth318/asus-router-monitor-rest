@@ -86,7 +86,8 @@ class AsusRouter:
     def get_memory_usage(self):
         """
         Return memory usage of the router
-        Format: {'mem_total': '262144', 'mem_free': '107320', 'mem_used': '154824'}
+        Format: {'mem_total': '262144',
+            'mem_free': '107320', 'mem_used': '154824'}
         :returns: JSON with memory variables
         """
         s = self.__get('memory_usage()')
@@ -258,20 +259,14 @@ class AsusRouter:
         :returns: JSON list with MAC addresses
         """
         clnts = self.get_clients_fullinfo()
-        lst = []
-        clients_list = []
-
-        if len(clnts) == 0:
-            print("No clients online. Probably some error somewhere?")
-            return json.dumps(lst)
-
+        print(clnts)
         try:
-            clients_list = clnts['get_clientlist']
+            len(clnts['get_clientlist']) != 0
         except:
             return json.dumps([])
-
-        for c in clients_list:
-            if (len(c) == 17) and ("isOnline" in clients_list[c]) and (clients_list[c]['isOnline'] == '1'):
+        lst = []
+        for c in clnts['get_clientlist']:
+            if (len(c) == 17) and ("isOnline" in clnts['get_clientlist'][c]) and (clnts['get_clientlist'][c]['isOnline'] == '1'):
                 lst.append({"mac": c})
         return json.dumps(lst)
 
@@ -283,6 +278,10 @@ class AsusRouter:
         :return: JSON list of clients with main characteristics
         """
         clnts = self.get_clients_fullinfo()
+        try:
+            len(clnts['get_clientlist']) != 0
+        except:
+            return json.dumps([])
         lst = []
         for c in clnts['get_clientlist']:
             # Only walk through the mac-addresses, not the additional datafields
