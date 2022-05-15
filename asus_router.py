@@ -265,7 +265,6 @@ class AsusRouter:
         :returns: JSON list with MAC addresses
         """
         clnts = self.get_clients_fullinfo()
-        print(clnts)
         try:
             len(clnts['get_clientlist']) != 0
         except:
