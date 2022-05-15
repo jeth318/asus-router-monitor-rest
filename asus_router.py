@@ -14,6 +14,9 @@ class AsusRouter:
             username : Root user name
             password : Password required to login
         """
+        self.ipaddress = ipaddress
+        self.username = username
+        self.password = password
         self.url = 'http://{}/appGet.cgi'.format(ipaddress)
         self.headers = None
         self.__authenticate(ipaddress, username, password)
@@ -53,6 +56,9 @@ class AsusRouter:
             command : Command to send to the return
         :returns: string result from the router
         """
+        # Re-authenticate on each call since it gets dropped after a while.
+        self.__authenticate(self.ipaddress, self.username, self.password)
+
         if self.headers:
             payload = "hook={}".format(command)
             try:
