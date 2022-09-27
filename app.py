@@ -2,7 +2,6 @@ import os
 from asus_router import AsusRouter
 from flask import Flask, make_response, render_template, jsonify
 from flask_cors import CORS
-import json
 from dotenv import dotenv_values, load_dotenv
 
 load_dotenv()
@@ -29,10 +28,6 @@ def res(data):
         return make_response(jsonify(data))
     except Exception as e:
         return make_response("Error")
-
-@app.route('/')
-def index():
-    return render_template("index.html")
 
 
 @app.route('/settings')
